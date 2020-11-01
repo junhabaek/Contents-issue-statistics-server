@@ -14,13 +14,10 @@ const isSourceDataValid = async(oneSource) =>{
 }
 
 const isRedditSourceValid = async(oneSource)=>{
-    if(oneSource.source_type === "url_pattern"){
+    if(oneSource.source_type === "search_pattern"){
 
     }
-    else if(oneSource.source_type === "search_pattern"){
-
-    }
-    else if(oneSource.source_type === "pure"){
+    else if(oneSource.source_type === "raw_id"){
         // not defined yet
         return false;
     }
@@ -30,6 +27,10 @@ const isRedditSourceValid = async(oneSource)=>{
 // not implemented yet
 const isTwitterSourceValid = async(oneSource)=>{
 
+}
+
+const isStatisticsTypeValid = async()=>{
+    //TODO lambda에 해당하는 이름의 함수가 있는가?
 }
 
 module.exports = {
