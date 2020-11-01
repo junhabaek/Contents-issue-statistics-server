@@ -20,8 +20,9 @@ const validRawIdDramaRequest = {
         }
     ]
 }
+//TODO 내부 내용 수정 필요.
 const validRawIdMovieRequest = {
-    content_id : "1399", //game of thrones tmdb id
+    content_id : "11423", //살인의 추억 tmdb id
     content_type : "movie",
     source_data : [
         {
