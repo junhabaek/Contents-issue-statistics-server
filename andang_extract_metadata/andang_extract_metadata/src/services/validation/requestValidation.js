@@ -10,10 +10,10 @@ const validateRequest = async(collectingInfo)=>{
         message = "format";
     }
     else if(await isContentValid(collectingInfo.content_type, collectingInfo.content_id) === false){
-        message = "inValidContentId";
+        message = "invalidContentId";
     }
     else if(await areSourceDataValid(collectingInfo.source_data) === false){
-        message = "inValidSourceData";
+        message = "invalidSourceData";
     }
     return message;
 }

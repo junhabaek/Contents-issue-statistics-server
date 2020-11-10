@@ -19,7 +19,6 @@ describe('validation', ()=>{
             const result = await isFormatValid(testData.undefinedContentIdRequest);
             result.should.eql(false);
         });
-        //TODO statistics type validation
     });
     describe('content validation', ()=>{
         it('valid drama id', async()=>{
@@ -44,29 +43,27 @@ describe('validation', ()=>{
         });
     });
 
-    //TODO source data validation test
-    //
-    // describe('source validation', ()=>{
-    //     it('invalid SourceType', async()=>{
-    //
-    //     });
-    //     it('invalid SiteType', async()=>{
-    //
-    //     });
-    //     it('invalid SourceData Format', async()=>{
-    //
-    //     });
-    //     it('valid search pattern', async()=>{
-    //
-    //     });
-    //     it('invalid search pattern', async()=>{
-    //
-    //     });
-    //     it('valid raw id', async()=>{
-    //
-    //     });
-    //     it('invalid raw id', async()=>{
-    //
-    //     });
-    // });
+
+    describe('source validation', ()=>{
+        it('invalid SourceType', async()=>{
+            const result = await areSourceDataValid(testData.invalidSourceTypeSourceData)
+            result.should.eql(false);
+        }).timeout(5000);
+        it('invalid SiteType', async()=>{
+            const result = await areSourceDataValid(testData.invalidSiteTypeSourceData)
+            result.should.eql(false);
+        }).timeout(5000);
+        it('invalid SourceData Format', async()=>{
+            const result = await areSourceDataValid(testData.invalidFormatSourceData)
+            result.should.eql(false);
+        }).timeout(5000);
+        it('valid raw id', async()=>{
+            const result = await areSourceDataValid(testData.validSourceData)
+            result.should.eql(true);
+        }).timeout(5000);
+        it('invalid raw id', async()=>{
+            const result = await areSourceDataValid(testData.invalidSourceSourceData)
+            result.should.eql(false);
+        }).timeout(5000);
+    });
 });
