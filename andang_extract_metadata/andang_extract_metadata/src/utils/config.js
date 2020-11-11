@@ -15,5 +15,6 @@ config.REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
 config.REDDIT_ACCESS_TOKEN = process.env.REDDIT_ACCESS_TOKEN;
 config.REDDIT_REFRESH_TOKEN = process.env.REDDIT_REFRESH_TOKEN;
 
+config.MONGO_URL = process.env.MONGO_URL
 
 module.exports = config;
