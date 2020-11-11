@@ -1,5 +1,5 @@
 const {validateRequest} = require('./services/validation/index');
-const {extractMetadata} = require('./services/extraction/index');
+const {extractContentDetail} = require('./services/extraction/index');
 
 //controller의 역할
 const main = async(collectingInfo)=>{
@@ -11,11 +11,16 @@ const main = async(collectingInfo)=>{
     if(result.message === "success"){
         try{
             //TODO [NOW] 갱신된 overveiw 이용 result 데이터 넣기.
-            const contentDetail = await extractMetadata(collectingInfo);
+            const contentDetail = await extractContentDetail(collectingInfo.content_type, collectingInfo.content_id);
 
             if(contentDetail.hasOwnProperty('content_id')){
                 result.isSucess = true;
                 result.contentId = contentDetail.content_id; //여기서의 content_id != collectingInfo.content_id
+
+                // TODO poster 받기
+                // poster s3 넣기
+                // _poster_url 갱신
+
                 //TODO [NOW] metadata 바탕으로, collectingInfo 갱신할거 있으면 갱신
                 //TODO [NOW] 받은거 가지고 mongodb 안에 넣어주기
                 //TODO [NOW] sourceData의 updated를 season : 1, episodes :0으로 초기화

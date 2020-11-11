@@ -1,5 +1,5 @@
-const {extractMetadata} = require('./extractMetadata');
+const {extractContentDetail} = require('./extractContentDetail');
 
 module.exports = {
-    extractMetadata
+    extractContentDetail
 }
