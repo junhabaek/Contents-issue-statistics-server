@@ -1,4 +1,4 @@
-//TODO 어떤 parameter가 먼저 나와야 하는가?
+//TODO [개선] 어떤 parameter가 먼저 나와야 하는가?
 const extractContentOverview = async(contentType, contentId)=>{
     let result = {};
     if(contentType === "movie"){
@@ -12,6 +12,7 @@ const extractContentOverview = async(contentType, contentId)=>{
 
 //from tmdb
 const extractMovieOverview = async(contentId)=>{
+    //content_id를 unique id로 바꾸는 방법.
 
 }
 //from tmdb
