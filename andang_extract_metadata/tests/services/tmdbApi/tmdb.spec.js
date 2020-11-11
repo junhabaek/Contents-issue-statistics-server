@@ -6,14 +6,14 @@ describe('tmdb API', ()=>{
     describe('tv alternative title', ()=>{
         it('valid tv_id alt title', async()=>{
             const result = await getDramaAltTitle('1399');
-            // console.log(result);
-            result.success.should.eql(true);
+            should.ok(typeof result === "string");
+            // console.log(result)
         });
         it('invalid tv_id alt title', async()=>{
             try{
                 const result = await getDramaAltTitle('13993588');
-                // console.log(result);
-                result.success.should.eql(false);
+                result.should.eql('');
+                // console.log(result)
             }
             catch(e){
                 console.log(e);
@@ -24,13 +24,14 @@ describe('tmdb API', ()=>{
         it('valid movie_id alt title', async()=>{
             const result = await getMovieAltTitle('299534');
             // console.log(result);
-            result.success.should.eql(true);
+            should.ok(typeof result === "string");
+            // console.log(result)
         });
         it('invalid movie_id alt title', async()=>{
             try{
                 const result = await getMovieAltTitle('2995345635574');
-                // console.log(result);
-                result.success.should.eql(false);
+                result.should.eql('');
+                // console.log(result)
             }
             catch(e){
                 console.log(e);
@@ -40,14 +41,14 @@ describe('tmdb API', ()=>{
     describe('tv credits', ()=>{
         it('valid tv_id credits', async()=>{
             const result = await getDramaCredits('1399');
-            // console.log(result);
-            result.success.should.eql(true);
+            result.should.have.ownProperty('cast');
+            // console.log(result)
         });
         it('invalid tv_id credits', async()=>{
             try{
                 const result = await getDramaCredits('13993588');
-                // console.log(result);
-                result.success.should.eql(false);
+                result.should.not.have.ownProperty('cast');
+                // console.log(result)
             }
             catch(e){
                 console.log(e);
@@ -57,14 +58,14 @@ describe('tmdb API', ()=>{
     describe('movie credits', ()=>{
         it('valid movie_id credits', async()=>{
             const result = await getMovieCredits('299534');
-            // console.log(result);
-            result.success.should.eql(true);
+            result.should.have.ownProperty('cast');
+            // console.log(result)
         });
         it('invalid movie_id credits', async()=>{
             try{
                 const result = await getMovieCredits('2995345635574');
-                // console.log(result);
-                result.success.should.eql(false);
+                result.should.not.have.ownProperty('cast');
+                // console.log(result)
             }
             catch(e){
                 console.log(e);

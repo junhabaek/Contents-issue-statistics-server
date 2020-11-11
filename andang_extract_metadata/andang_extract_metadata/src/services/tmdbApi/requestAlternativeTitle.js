@@ -2,11 +2,25 @@ const axios = require('axios');
 const {TMDB_API_KEY} = require('../../utils/config');
 
 const getMovieAltTitle = async(contentId)=>{
-    return getContentAltTitle("movie", contentId);
+    const result = await getContentAltTitle("movie", contentId);
+    if(result.hasOwnProperty('titles')){
+        const krTitle = result.titles.find(element=>element['iso_3166_1'] === "KR");
+        if(krTitle !== undefined){
+            return krTitle['title'];
+        }
+    }
+    return ''
 }
 
 const getDramaAltTitle = async(contentId)=> {
-    return getContentAltTitle("drama", contentId);
+    const result = await getContentAltTitle("drama", contentId);
+    if(result.hasOwnProperty('results')){
+        const krTitle = result.results.find(element=>element['iso_3166_1'] === "KR");
+        if(krTitle !== undefined){
+            return krTitle['title'];
+        }
+    }
+    return ''
 }
 
 const getContentAltTitle = async(contentType, contentId)=>{
