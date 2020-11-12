@@ -17,4 +17,8 @@ config.REDDIT_REFRESH_TOKEN = process.env.REDDIT_REFRESH_TOKEN;
 
 config.MONGO_URL = process.env.MONGO_URL
 
+config.S3_ACCESS_KEY = process.env.S3_ACCESS_KEY
+config.S3_SECRET_ACCESS_KEY = process.env.S3_SECRET_ACCESS_KEY
+config.S3_REGION = process.env.S3_REGION
+
 module.exports = config;
