@@ -4,7 +4,6 @@ const {TMDB_API_KEY} = require('../../utils/config');
 const getMovieCredits = async(contentId)=>{
     const result = await getContentCredits("movie", contentId);
     if(result.hasOwnProperty('id')){
-        //TODO 유의 content 정의 내에서는 casts이다.
         const max10Casts = result.cast.slice(0,10);
         const directorInfo = result.crew.find(element=>element['job'].toUpperCase() === 'DIRECTOR')
         return {

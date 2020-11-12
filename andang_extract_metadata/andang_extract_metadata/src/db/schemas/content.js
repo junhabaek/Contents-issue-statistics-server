@@ -60,4 +60,4 @@ const contentSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('content', contentSchema);
+module.exports = mongoose.model('pendingContent', contentSchema);

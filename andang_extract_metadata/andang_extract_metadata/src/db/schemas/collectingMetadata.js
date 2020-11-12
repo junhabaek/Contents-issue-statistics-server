@@ -48,4 +48,4 @@ const collectingMetadataSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('collectingMetadata', collectingMetadataSchema);
+module.exports = mongoose.model('pendingCollectingMetadata', collectingMetadataSchema);
