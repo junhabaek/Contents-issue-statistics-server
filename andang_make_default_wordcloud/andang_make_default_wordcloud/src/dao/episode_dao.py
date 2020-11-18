@@ -1,0 +1,23 @@
+from .mongo_connector import db
+
+_episode_collection = db['leaf_episodes']
+
+def update_episode_statistics(content_id, season_number, episode_number, statistics_path):
+    _episode_collection.update_one({
+        "content_id" : content_id,
+        "season_number" : season_number,
+        "episode_number" : episode_number
+    },{
+        '$push':{'episode_statistics' : {
+            "statistics_type" : "wordcloud",
+            "statistics_name" : f'wordcloud for episode{episode_number}',
+            "url" : statistics_path
+    }}})
+
+def insert_episode_detail(content_id, season_number, episode_number):
+    _episode_collection.insert_one({
+        "content_id" : content_id,
+        "season_number" : season_number,
+        "episode_number" : episode_number,
+        "episode_statistics" : []
+    })
