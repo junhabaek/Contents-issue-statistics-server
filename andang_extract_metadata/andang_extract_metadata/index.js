@@ -1,10 +1,16 @@
 const {main} = require('./src/main');
 
 exports.handler =  async function(event, context) {
-    //TODO [배포전]요청 데이터 추출
+
     const {body} = event;
 
-    const result = await main(event)
+    const response = {};
+
+    const result = await main(body)
+    response.body = {
+        "statusCode" : result.isSuccess ? 200:400,
+        "resultSources" : result.resultResources
+    }
 
     return result
 }

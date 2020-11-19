@@ -3,11 +3,15 @@ const {extractContentDetail} = require('./services/extraction/index');
 const {getPosterImage} = require('./services/tmdbApi');
 const {uploadPosterToServer} = require('./services/upload');
 const {addContent, addCollectingMetadata} = require('./db/dao');
+const {splitCollectingInfoToExtractionRequests} = require('./services/splitRequests');
 require('./db/connectors').connectMongo();
 
 //controller의 역할
 const main = async(collectingInfo)=>{
-    const result = {message : ""}
+    const result = {
+        message : "",
+        resultResources:[]
+    }
 
     result.message = await validateRequest(collectingInfo);
 
@@ -36,6 +40,8 @@ const main = async(collectingInfo)=>{
 
                 await addContent(contentDetail);
                 await addCollectingMetadata(collectingInfo);
+
+                result.resultResources = splitCollectingInfoToExtractionRequests(collectingInfo);
             }
             else{
                 result.message = "some error"
