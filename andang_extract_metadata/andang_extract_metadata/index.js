@@ -6,11 +6,11 @@ exports.handler =  async function(event, context) {
 
     const response = {};
 
-    const result = await main(body)
+    const result = await main(body);
     response.body = {
-        "statusCode" : result.isSuccess ? 200:400,
-        "resultSources" : result.resultResources
-    }
+        "resultSources" : result.resultSources
+    };
+    response.isSuccess = result.isSuccess;
 
-    return result
+    return response
 }

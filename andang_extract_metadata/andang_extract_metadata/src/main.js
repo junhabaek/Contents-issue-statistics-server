@@ -41,7 +41,7 @@ const main = async(collectingInfo)=>{
                 await addContent(contentDetail);
                 await addCollectingMetadata(collectingInfo);
 
-                result.resultResources = splitCollectingInfoToExtractionRequests(collectingInfo);
+                result.resultSources = splitCollectingInfoToExtractionRequests(collectingInfo);
             }
             else{
                 result.message = "some error"
