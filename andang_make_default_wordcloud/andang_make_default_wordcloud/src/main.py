@@ -15,7 +15,7 @@ def main(content_id, source_name, season_number, episode_number):
             move_collecting_info_from_pending_to_deploy(content_id)
         update_season_count_in_content_detail(content_id)
     else:
-        if result['episode_count'] < episode_number:
+        if get_episode_detail(content_id, season_number, episode_number) is None:
             insert_episode_detail(content_id, season_number, episode_number)
             update_episode_count_in_season(content_id,season_number)
 

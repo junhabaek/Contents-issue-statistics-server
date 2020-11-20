@@ -21,3 +21,10 @@ def insert_episode_detail(content_id, season_number, episode_number):
         "episode_number" : episode_number,
         "episode_statistics" : []
     })
+
+def get_episode_detail(content_id, season_number, episode_number):
+    return _episode_collection.find_one({
+        "content_id" : content_id,
+        "season_number" : season_number,
+        "episode_number": episode_number
+    })

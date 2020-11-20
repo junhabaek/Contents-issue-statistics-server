@@ -1,4 +1,4 @@
-## TODO lambda 배포시 . 제거
+## TODO lambda 배포시 src.dao.mongo_connector
 from .mongo_connector import db
 
 _pending_collecting_info = db['pendingcollectingmetadatas']
