@@ -37,6 +37,7 @@ if __name__ == "__main__":
     main("t61889", "reddit_discussion", 1, 2)
 
 else:
+    ## TODO lambda 배포시 src.fileManager로 변경
     from .fileManager.s3_manager import S3Manager
     from .wordcloudGenerator.wordcloud_generator import WordcloudGenerator
 

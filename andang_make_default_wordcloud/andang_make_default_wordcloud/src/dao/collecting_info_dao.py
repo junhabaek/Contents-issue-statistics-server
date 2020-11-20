@@ -1,3 +1,4 @@
+## TODO lambda 배포시 . 제거
 from .mongo_connector import db
 
 _pending_collecting_info = db['pendingcollectingmetadatas']
