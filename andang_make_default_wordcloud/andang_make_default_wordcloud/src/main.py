@@ -5,6 +5,7 @@ def main(content_id, source_name, season_number, episode_number):
     word_generator = WordcloudGenerator()
     wordcloud = word_generator.make_wordcloud(df)
     image_path = s3_manager.upload_wordcloud(wordcloud,content_id,source_name,season_number,episode_number)
+    image_path = '/'+image_path
 
     result = get_season_detail(content_id, season_number)
     if result is None:
