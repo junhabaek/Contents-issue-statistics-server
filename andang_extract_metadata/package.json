@@ -1,0 +1,23 @@
+{
+  "name": "andang_extract_metadata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/**/*.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^8.2.0",
+    "should": "^13.2.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.789.0",
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.10.13",
+    "snoowrap": "^1.21.0"
+  }
+}
