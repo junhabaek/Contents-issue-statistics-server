@@ -30,6 +30,6 @@ def update_season_statistics(content_id, season_number, statistics_path):
     },{
         '$push':{'season_statistics' : {
             "statistics_type" : "wordcloud",
-            "statistics_name" : 'wordcloud',
+            "statistics_name" : f'wordcloud for season{season_number}',
             "url" : statistics_path
     }}})
