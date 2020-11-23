@@ -1,6 +1,7 @@
 
 def main(content_id, source_name, season_number, episode_number, source_id):
-    reddit_client = RedditComments(source_id)
+    size = 'large' if season_number ==0 else 'small'
+    reddit_client = RedditComments(source_id, size)
     df = reddit_client.get_one_depth_comments()
     s3_uploader = S3Uploader()
     s3_uploader.upload_dataframe(df, content_id, source_name, season_number, episode_number)

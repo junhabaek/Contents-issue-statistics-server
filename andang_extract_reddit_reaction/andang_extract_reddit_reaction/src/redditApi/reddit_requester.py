@@ -6,13 +6,13 @@ import pandas as pd
 from ..filter import comment_filter
 
 class RedditComments:
-    def __init__(self, submission_id: str):
+    def __init__(self, submission_id: str, size: str):
         self._reddit_client = praw.Reddit(
             client_id=os.getenv("REDDIT_CLIENT_ID"),
             client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
             user_agent=os.getenv("REDDIT_USER_AGENT")
         )
-        self._submission = self._request_submission(submission_id)
+        self._submission = self._request_submission(submission_id, size)
 
     def get_one_depth_comments(self) -> pd.DataFrame:
         comment_list = []
@@ -27,9 +27,12 @@ class RedditComments:
     def _get_two_depth_comments(self) -> pd.DataFrame:
         pass
 
-    def _request_submission(self, submission_id: str) -> reddit_submission:
+    def _request_submission(self, submission_id: str, size: str) -> reddit_submission:
         submission = self._reddit_client.submission(submission_id)
-        submission.comments.replace_more(limit=None)
+        if size == 'large':
+            submission.comments.replace_more(limit=8)
+        else:
+            submission.comments.replace_more(limit=None)
         return submission
 
     def _is_minus_score(self, comment: reddit_comment) -> bool:
