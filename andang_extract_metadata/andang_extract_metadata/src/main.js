@@ -6,6 +6,8 @@ const {addContent, addCollectingMetadata} = require('./db/dao');
 const {splitCollectingInfoToExtractionRequests} = require('./services/splitRequests');
 require('./db/connectors').connectMongo();
 
+// console.log("db connected");
+
 //controller의 역할
 const main = async(collectingInfo)=>{
     const result = {
@@ -14,11 +16,14 @@ const main = async(collectingInfo)=>{
     }
 
     result.message = await validateRequest(collectingInfo);
+    // console.log("validate success");
 
     // 만약 검증 문제 없었다면 metadata 추출, 있었다면 s3버킷에 등록(현재는 그냥 로그기록 + 에러 메시지 반환토록 하자
     if(result.message === "success"){
         try{
             const contentDetail = await extractContentDetail(collectingInfo.content_type, collectingInfo.content_id);
+            
+            // console.log("extract detail success");
 
             if(contentDetail.hasOwnProperty('content_id')){
                 result.isSuccess = true;
@@ -27,10 +32,13 @@ const main = async(collectingInfo)=>{
                                         // 굳이 데이터 자체에 firstCall 여부의 정보를 직접 넣고 싶지 않았기 때문.
 
                 const posterImage = await getPosterImage(contentDetail.poster_url);
+                // console.log("download poster success");
 
                 const imageNameAndFormat = contentDetail.poster_url.split('.');
                 const imageFileName = contentDetail.content_id + '.' + imageNameAndFormat[imageNameAndFormat.length-1];
                 await uploadPosterToServer(posterImage, imageFileName);
+                
+                // console.log("upload poster success");
 
                 contentDetail.poster_url = `/test/posters/${imageFileName}`;
 
