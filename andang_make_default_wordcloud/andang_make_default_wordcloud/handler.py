@@ -1,5 +1,5 @@
 ## TODO lambda 배포시 src로 변경
-from .src import main
+from src import main
 
 def lambda_handler(event, context):
     body = event['body'];

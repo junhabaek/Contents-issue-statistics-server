@@ -1,4 +1,4 @@
-from .mongo_connector import db
+from src.dao.mongo_connector import db
 
 _pending_content = db['pendingcontents']
 _deploying_content = db['contents']

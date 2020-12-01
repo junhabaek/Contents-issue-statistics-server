@@ -17,7 +17,10 @@ def main(content_id, source_name, season_number, episode_number):
         result = get_season_detail(content_id, season_number)
         if result is None:
             insert_season_detail(content_id, season_number)
-            if season_number == 1:
+            
+            isNotDeployedYet = True if get_pending_collecting_detail(content_id) is not None else False
+            
+            if isNotDeployedYet:
                 move_content_detail_from_pending_to_deploy(content_id)
                 move_collecting_info_from_pending_to_deploy(content_id)
             update_season_count_in_content_detail(content_id)
@@ -48,10 +51,10 @@ if __name__ == "__main__":
 
 else:
     ## TODO lambda 배포시 src.fileManager로 변경
-    from .fileManager.s3_manager import S3Manager
-    from .wordcloudGenerator.wordcloud_generator import WordcloudGenerator
+    from src.fileManager.s3_manager import S3Manager
+    from src.wordcloudGenerator.wordcloud_generator import WordcloudGenerator
 
-    from .dao.content_detail_dao import *
-    from .dao.season_dao import *
-    from .dao.episode_dao import *
-    from .dao.collecting_info_dao import *
+    from src.dao.content_detail_dao import *
+    from src.dao.season_dao import *
+    from src.dao.episode_dao import *
+    from src.dao.collecting_info_dao import *
