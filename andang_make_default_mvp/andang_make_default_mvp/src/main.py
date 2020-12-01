@@ -25,6 +25,9 @@ def main(content_id, source_name, season_number, episode_number):
         cast_names = get_episode_character_cast(content_id, season_number, episode_number)
 
     mvps = get_6mvp(cast_names, convert_df_to_str_list(df))
+    
+    if len(mvps) <=1:
+        return
 
     image_data = convert_mvp_to_image_file(mvps)
 
@@ -42,7 +45,10 @@ def main(content_id, source_name, season_number, episode_number):
         result = get_season_detail(content_id, season_number)
         if result is None:
             insert_season_detail(content_id, season_number)
-            if season_number == 1:
+            
+            isNotDeployedYet = True if get_pending_collecting_detail(content_id) is not None else False
+            
+            if isNotDeployedYet:
                 move_content_detail_from_pending_to_deploy(content_id)
                 move_collecting_info_from_pending_to_deploy(content_id)
             update_season_count_in_content_detail(content_id)
