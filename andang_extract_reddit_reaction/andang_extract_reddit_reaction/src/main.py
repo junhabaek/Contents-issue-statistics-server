@@ -14,6 +14,6 @@ if __name__ == "__main__":
     load_dotenv(verbose = True)
     main("m123", "reddit_discussion", 1, 2, "323947")
 else:
-    ##TODO lambda upload시 src.redditApi.reddit_requester 형태가 되어야 함.
-    from .redditApi.reddit_requester import RedditComments
-    from .s3upload.s3_uploader import S3Uploader
+    ##TODO lambda upload시 . 빼야함.
+    from src.redditApi.reddit_requester import RedditComments
+    from src.s3upload.s3_uploader import S3Uploader

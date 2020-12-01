@@ -3,7 +3,7 @@ import praw.models.reddit.comment as reddit_comment
 import praw.models.reddit.submission as reddit_submission
 import os
 import pandas as pd
-from ..filter import comment_filter
+from src.filter import comment_filter
 
 class RedditComments:
     def __init__(self, submission_id: str, size: str):
